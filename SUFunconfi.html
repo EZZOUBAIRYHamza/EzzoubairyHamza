@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>equation</title>
+    <script>
+        var h, k, x, h0;
+        var outputText;
+        
+        function validate() {
+        
+            // get the input
+            h = document.forms["input_form"]["hterm"].value;
+            k = document.forms["input_form"]["kterm"].value;
+            x = document.forms["input_form"]["xterm"].value;
+			h0 = document.forms["input_form"]["h0term"].value;
+            
+            // validate a, b and c
+            if (h == 0) {
+                outputText = "<em>h</em> cannot equal zero!";
+            } else if (isNaN(h)) {
+                outputText = "<em>h</em> must be a number!";
+            } else if (isNaN(k)) {
+                outputText = "<em>k</em> must be a number!";
+            } else if (isNaN(x)) {
+                outputText = "<em>x</em> must be a number!";
+            }else {
+            
+                var x1=(k*((h0*h0)-(h*h)))/(2*x);
+            
+                outputText = " Flux par unité de largeur dans une section égal a "  + x1 + "m²/jour";
+            }
+            
+            // output the result (or errors)
+            document.getElementById("output_text").innerHTML = outputText;
+        }
+    </script>
+</head>
+
+<body>
+<h3 style="color:brown;">      Steady Unidirectionnal Flow                  </h3>
+    <p>Please enter the coefficients <strong>k</strong>, <strong>h0</strong>, <strong>h</strong> and <strong>x</strong> <strong>:  q = k*(h0²-h²)/2*x</strong></p>
+    
+    <form name="input_form" action="javascript:validate();">
+        h: <input type="text" name="hterm" size="5" required>
+		h0: <input type="text" name="h0term" size="5" required>
+        k: <input type="text" name="kterm" size="5" required>
+        x: <input type="text" name="xterm" size="5" required>
+		
+		
+        <br><br>
+        <input type="submit" value="Calculate">
+    </form>
+    
+<a href="https://redachebli9.wixsite.com/hydro">Home page</a>
+    <p id="output_text"/>
+</body>
+
+</html>
